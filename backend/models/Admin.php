@@ -10,9 +10,13 @@ use Yii;
  * @property int $id_admin
  * @property string $username
  * @property string $password
- * @property string $nama
- * @property string $jabatan
+ * @property string $authKey
+ * @property string $accessToken
  * @property int $status
+ * @property string $role
+ * @property int $id_pegawai
+ * @property string $time_create
+ * @property string $time_update
  */
 class Admin extends \yii\db\ActiveRecord
 {
@@ -30,9 +34,12 @@ class Admin extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'password', 'nama', 'jabatan', 'status'], 'required'],
-            [['status'], 'integer'],
-            [['username', 'password', 'nama', 'jabatan'], 'string', 'max' => 255],
+            [['username', 'password', 'authKey', 'accessToken', 'status', 'role', 'id_pegawai', 'time_create', 'time_update'], 'required'],
+            [['status', 'id_pegawai'], 'integer'],
+            [['time_create', 'time_update'], 'safe'],
+            [['username', 'role'], 'string', 'max' => 60],
+            [['password'], 'string', 'max' => 200],
+            [['authKey', 'accessToken'], 'string', 'max' => 255],
         ];
     }
 
@@ -45,9 +52,13 @@ class Admin extends \yii\db\ActiveRecord
             'id_admin' => 'Id Admin',
             'username' => 'Username',
             'password' => 'Password',
-            'nama' => 'Nama',
-            'jabatan' => 'Jabatan',
+            'authKey' => 'Auth Key',
+            'accessToken' => 'Access Token',
             'status' => 'Status',
+            'role' => 'Role',
+            'id_pegawai' => 'Id Pegawai',
+            'time_create' => 'Time Create',
+            'time_update' => 'Time Update',
         ];
     }
 }
