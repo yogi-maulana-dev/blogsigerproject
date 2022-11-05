@@ -11,8 +11,6 @@ use yii\bootstrap5\Html;
 
 <h1><?= Html::encode($this->title) ?></h1>
 
-
-
 <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
 <?= $form->field($model, 'username',['options' =>[
