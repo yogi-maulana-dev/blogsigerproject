@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\base\Model;
+use backend\models\BackendUser;
 
 /**
  * This is the model class for table "admin".
@@ -20,9 +22,8 @@ use Yii;
  */
 class Admin extends \yii\db\ActiveRecord
 {
-        public $username;
-    public $email;
-    public $password;
+
+
 
     /**
      * {@inheritdoc}
@@ -38,30 +39,29 @@ class Admin extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'auth_key', 'password_hash', 'email'], 'required'],
-            [['status'], 'integer'],
-            [['username', 'password_hash','email', 'verification_token'], 'string', 'max' => 255],
+            [['username', 'password_hash', 'email'], 'required'],
+            [['status', 'created_at', 'updated_at'], 'integer'],
+            [['username', 'password_hash', 'password_reset_token', 'email', 'verification_token'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
+            [['username'], 'unique'],
             [['email'], 'unique'],
-
+            [['password_reset_token'], 'unique'],
         ];
     }
 
+
         public function simpan()
     {
-
-
-
         $admin = new Admin();
-        $admin->username = $this->username;
+       $admin->username = $this->username;
         $admin->email = $this->email;
-        $admin->setPassword($this->password);
+
+
+        $admin->setPassword($this->password_hash);
         $admin->generateAuthKey();
         $admin->generateEmailVerificationToken();
 
         return $admin->save();
-
-
     }
 
     /**

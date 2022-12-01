@@ -1,23 +1,18 @@
 <?php
 
-namespace backend\controllers;
+namespace app\controllers;
 
-use app\models\Admin;
-use app\models\AdminSearch;
-use app\models\BackendUser;
+use app\models\Berita;
+use app\models\BeritaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use Yii;
-use yii\base\Model;
 
 /**
- * AdminController implements the CRUD actions for Admin model.
+ * BeritaController implements the CRUD actions for Berita model.
  */
-class AdminController extends Controller
+class BeritaController extends Controller
 {
-
-
     /**
      * @inheritDoc
      */
@@ -37,13 +32,13 @@ class AdminController extends Controller
     }
 
     /**
-     * Lists all Admin models.
+     * Lists all Berita models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new AdminSearch();
+        $searchModel = new BeritaSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -53,51 +48,53 @@ class AdminController extends Controller
     }
 
     /**
-     * Displays a single Admin model.
-     * @param int $id ID
+     * Displays a single Berita model.
+     * @param int $id_berita Id Berita
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($id_berita)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($id_berita),
         ]);
     }
 
     /**
-     * Creates a new Admin model.
+     * Creates a new Berita model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
+        $model = new Berita();
 
- $admin = new Admin();
-
-       if ($admin->load(Yii::$app->request->post()) && $admin->simpan()) {
-            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
-            return $this->goHome();
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id_berita' => $model->id_berita]);
+            }
+        } else {
+            $model->loadDefaultValues();
         }
 
         return $this->render('create', [
-            'model' => $admin,
+            'model' => $model,
         ]);
     }
 
     /**
-     * Updates an existing Admin model.
+     * Updates an existing Berita model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
+     * @param int $id_berita Id Berita
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id_berita)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($id_berita);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id_berita' => $model->id_berita]);
         }
 
         return $this->render('update', [
@@ -106,29 +103,29 @@ class AdminController extends Controller
     }
 
     /**
-     * Deletes an existing Admin model.
+     * Deletes an existing Berita model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
+     * @param int $id_berita Id Berita
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id_berita)
     {
-        $this->findModel($id)->delete();
+        $this->findModel($id_berita)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Admin model based on its primary key value.
+     * Finds the Berita model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id ID
-     * @return Admin the loaded model
+     * @param int $id_berita Id Berita
+     * @return Berita the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($id_berita)
     {
-        if (($model = Admin::findOne(['id' => $id])) !== null) {
+        if (($model = Berita::findOne(['id_berita' => $id_berita])) !== null) {
             return $model;
         }
 
