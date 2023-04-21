@@ -23,9 +23,9 @@ use yii\bootstrap5\NavBar;
     <title><?= Html::encode($this->title) ?></title>
     <link
                   rel="stylesheet"
-                  href=""
+                  href="css/style.css"
             />
-            <link href="css/upil.css" rel="stylesheet" />
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <?php $this->head() ?>
 </head>
 <body>
@@ -59,7 +59,7 @@ use yii\bootstrap5\NavBar;
             <!-- Home Cards -->
             <section class="home-cards">
                   <div>
-                        <img src="gambar-1.png" alt="" />
+                        <img src="gambar/gambar-1.png" alt="" />
                         <h3>Judul isi</h3>
                         <p>
                               Lorem ipsum dolor sit amet, consectetur
@@ -68,7 +68,7 @@ use yii\bootstrap5\NavBar;
                         <a href="#">Link</a>
                   </div>
                   <div>
-                        <img src="gambar-1.png" alt="" />
+                        <img src="gambar/gambar-1.png" alt="" />
                         <h3>Judul</h3>
                         <p>
                               Lorem ipsum dolor sit amet, consectetur
@@ -77,7 +77,7 @@ use yii\bootstrap5\NavBar;
                         <a href="#">Link</a>
                   </div>
                   <div>
-                        <img src="gambar-1.png" alt="" />
+                        <img src="gambar/gambar-1.png" alt="" />
                         <h3>Judul</h3>
                         <p>
                               Lorem ipsum dolor sit amet, consectetur
@@ -86,7 +86,7 @@ use yii\bootstrap5\NavBar;
                         <a href="#">Link</a>
                   </div>
                   <div>
-                        <img src="gambar-1.png" alt="" />
+                        <img src="gambar/gambar-1.png" alt="" />
                         <h3>Judul</h3>
                         <p>
                               Lorem ipsum dolor sit amet, consectetur
@@ -95,7 +95,7 @@ use yii\bootstrap5\NavBar;
                         <a href="#">Link</a>
                   </div>
                   <div>
-                        <img src="gambar-1.png" alt="" />
+                        <img src="gambar/gambar-1.png" alt="" />
                         <h3>Judul</h3>
                         <p>
                               Lorem ipsum dolor sit amet, consectetur
@@ -104,7 +104,7 @@ use yii\bootstrap5\NavBar;
                         <a href="#">Link</a>
                   </div>
                   <div>
-                        <img src="gambar-1.png" alt="" />
+                        <img src="gambar/gambar-1.png" alt="" />
                         <h3>Judul</h3>
                         <p>
                               Lorem ipsum dolor sit amet, consectetur
@@ -113,7 +113,7 @@ use yii\bootstrap5\NavBar;
                         <a href="#">Link</a>
                   </div>
                   <div>
-                        <img src="gambar-1.png" alt="" />
+                        <img src="gambar/gambar-1.png" alt="" />
                         <h3>Judul</h3>
                         <p>
                               Lorem ipsum dolor sit amet, consectetur
@@ -122,7 +122,7 @@ use yii\bootstrap5\NavBar;
                         <a href="#">Link</a>
                   </div>
                   <div>
-                        <img src="gambar-1.png" alt="" />
+                        <img src="gambar/gambar-1.png" alt="" />
                         <h3>Judul</h3>
                         <p>
                               Lorem ipsum dolor sit amet, consectetur
