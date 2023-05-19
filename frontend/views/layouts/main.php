@@ -29,7 +29,10 @@ use yii\bootstrap5\NavBar;
     <?php $this->head() ?>
 </head>
 <body>
-<?php $this->beginBody() ?>
+<?php $this->beginBody() 
+
+?>
+ 
 <nav>
                   <div class="menu-btn">
                         <i class="fa fa-bars"></i>
@@ -51,6 +54,7 @@ use yii\bootstrap5\NavBar;
             </nav>
 
  <!-- Showcase -->
+
  <header class="showcase">
                   <h2>SigerProjects</h2>
                   <p>Pemesanan Aplikasi</p>

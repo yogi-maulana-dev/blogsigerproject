@@ -1,3 +1,8 @@
+<?php
+  if (Yii::$app->user->isGuest) {
+      $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
       <head>
@@ -15,6 +20,7 @@
             <title>SigerProject</title>
       </head>
       <body>
+            
             <nav>
                   <div class="menu-btn">
                         <i class="fa fa-bars"></i>
