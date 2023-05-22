@@ -101,4 +101,10 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
+
+    public function actionHelloWorld()
+    {
+        $hello = "Selamat dantang ngoding";
+        return $hello;
+    }
 }
