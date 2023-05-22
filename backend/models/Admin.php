@@ -41,7 +41,7 @@ class Admin extends \yii\db\ActiveRecord
         return [
             [['username', 'password_hash', 'email'], 'required'],
             [['status', 'created_at', 'updated_at'], 'integer'],
-            [['username', 'password_hash', 'password_reset_token', 'email', 'verification_token'], 'string', 'max' => 255],
+            [['username', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
             [['username'], 'unique'],
             [['email'], 'unique'],
@@ -59,7 +59,7 @@ class Admin extends \yii\db\ActiveRecord
 
         $admin->setPassword($this->password_hash);
         $admin->generateAuthKey();
-        $admin->generateEmailVerificationToken();
+        // $admin->generateEmailVerificationToken();
 
         return $admin->save();
     }
@@ -79,7 +79,6 @@ class Admin extends \yii\db\ActiveRecord
             'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
-            'verification_token' => 'Verification Token',
         ];
     }
 
@@ -158,18 +157,18 @@ class Admin extends \yii\db\ActiveRecord
     /**
      * Generates new password reset token
      */
-    public function generatePasswordResetToken()
-    {
-        $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
-    }
+    // public function generatePasswordResetToken()
+    // {
+    //     $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
+    // }
 
     /**
      * Generates new token for email verification
      */
-    public function generateEmailVerificationToken()
-    {
-        $this->verification_token = Yii::$app->security->generateRandomString() . '_' . time();
-    }
+    // public function generateEmailVerificationToken()
+    // {
+    //     $this->verification_token = Yii::$app->security->generateRandomString() . '_' . time();
+    // }
 
     /**
      * Removes password reset token

@@ -25,6 +25,8 @@ use yii\web\IdentityInterface;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
+    public $verification_token; // tambahkan definisi properti ini
+
     const STATUS_DELETED = 0;
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
@@ -130,6 +132,7 @@ class User extends ActiveRecord implements IdentityInterface
         }
 
         $timestamp = (int) substr($token, strrpos($token, '_') + 1);
+        // $expire = Yii::$app->params['user.passwordResetTokenExpire'];
         $expire = Yii::$app->params['user.passwordResetTokenExpire'];
         return $timestamp + $expire >= time();
     }
