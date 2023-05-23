@@ -786,8 +786,6 @@ AppAsset::register($this);
 		</div>
 		<!-- End Sidebar -->
 
-
-
 <?= $content ?>
 
 <div class="quick-sidebar">
@@ -1264,7 +1262,7 @@ AppAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
-        <?= $content ?>
+     
     </div>
 </main> -->
 

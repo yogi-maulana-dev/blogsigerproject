@@ -28,7 +28,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'hello-world'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -64,6 +64,16 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
+
+    public function actionHelloWorld()
+    {
+        $hello ="<h1>SELAMAT DATANG coy</h1>";
+
+        return $this->render('hello-world',[
+            'hello'=>$hello,
+        ]);
+    }
+
 
     /**
      * Login action.
@@ -101,4 +111,6 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
+
+ 
 }
