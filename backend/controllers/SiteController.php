@@ -2,7 +2,7 @@
 
 namespace backend\controllers;
 
-use app\models\LoginForm;
+use backend\models\LoginForm;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -28,7 +28,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'hello-world'],
+                        'actions' => ['logout', 'index'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -65,16 +65,6 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
-    public function actionHelloWorld()
-    {
-        $hello ="<h1>SELAMAT DATANG coy</h1>";
-
-        return $this->render('hello-world',[
-            'hello'=>$hello,
-        ]);
-    }
-
-
     /**
      * Login action.
      *
@@ -86,7 +76,7 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        $this->layout = 'hahkosong';
+        $this->layout = 'blank';
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
