@@ -19,15 +19,15 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php $this->registerCsrfMetaTags() ?>
-    <title>dsadas<?= Html::encode($this->title) ?></title>
+    <title><?= Html::encode($this->title) ?></title>
+	<link rel="icon" href="https://themekita.com/demo-atlantis-bootstrap/livepreview/examples/assets/img/icon.ico" type="image/x-icon"/>
+	
 	 <!-- Fonts and icons -->
 	 <script src=""></script>
-   	<!-- Fonts and icons -->
-	<script src="js/plugin/webfont/webfont.min.js"></script>
 	<script>
 		WebFont.load({
 			google: {"families":["Lato:300,400,700,900"]},
-			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['css/fonts.min.css']},
+			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['']},
 			active: function() {
 				sessionStorage.fonts = true;
 			}
@@ -35,10 +35,10 @@ AppAsset::register($this);
 	</script>
 
 	<!-- CSS Files -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/atlantis.css">
+	<link rel="stylesheet" href="">
+	<link rel="stylesheet" href="">
 	<!-- CSS Just for demo purpose, don't include it in your project -->
-	<link rel="stylesheet" href="css/demo.css">
+	<link rel="stylesheet" href="">
     <?php $this->head() ?>
 </head>
 <body>
@@ -1098,8 +1098,7 @@ AppAsset::register($this);
 <?php $this->endBody() ?>
         </div>
 
-
-		<!--   Core JS Files   -->
+	<!--   Core JS Files   -->
 	<script src="js/core/jquery.3.2.1.min.js"></script>
 	<script src="js/core/popper.min.js"></script>
 	<script src="js/core/bootstrap.min.js"></script>
