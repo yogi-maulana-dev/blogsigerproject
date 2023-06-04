@@ -2,6 +2,15 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\Url;
+use dosamigos\ckeditor\CKEditor;
+use dosamigos\tinymce\TinyMce;
+use summernote\SummernoteWidget;
+use marqu3s\summernote\Summernote;
+use yii\web\JsExpression;
+use yii\helpers\Json;
+
+use yii\web\View;
 
 /** @var yii\web\View $this */
 /** @var app\models\Berita $model */
@@ -49,7 +58,31 @@ use yii\widgets\ActiveForm;
 
 <?= $form->field($model, 'judul')->textInput(['maxlength' => true]) ?>
 
-<?= $form->field($model, 'isi')->textArea(['maxlength' => true]) ?>
+<?= $form->field($model, 'isi')
+         ->widget(CKEditor::className(), 
+            [
+              'options' => [], 
+              'preset' => 'custom',
+              'clientOptions' => [
+                  'extraPlugins' => '',
+                  'height' => 500,
+
+                  //Here you give the action who will handle the image upload 
+                  'filebrowserUploadUrl' => '/site/actionCkeditor_image_upload',
+
+                  'toolbarGroups' => [
+                      ['name' => 'undo'],
+                      ['name' => 'basicstyles', 'groups' => ['basicstyles', 'cleanup']],
+                      ['name' => 'paragraph', 'groups' => ['list', 'indent', 'blocks', 'align', 'bidi' ]],
+                      ['name' => 'styles'],
+                      ['name' => 'links', 'groups' => ['links', 'insert']]
+                  ]
+
+              ]
+
+            ]) 
+
+?>
 
 <?= $form->field($model, 'status')->textInput() ?>
 

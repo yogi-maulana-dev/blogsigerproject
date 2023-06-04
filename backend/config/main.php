@@ -27,6 +27,40 @@ return [
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_adminIdentity', 'httpOnly' => true],
         ],
+        
+// Other components
+// 'assetManager' => [
+//     'bundles' => [
+//         '2amigos\yii2-tinymce-widget\src\TinyMceAsset' => [
+//             'skip' => ['lang/*'],
+//         ],
+//     ],
+// ],
+
+// 'assetManager' => [
+//     'bundles' => [
+//         '2amigos\yii2-ckeditor-widget\src\CKEditorAsset' => [
+//             'skip' => ['lang/*'],
+//         ],
+//     ],
+// ],
+
+'assetManager' => [
+    'bundles' => [
+        'marqu3s\summernote\SummernoteAsset'   => [
+            'css' => [
+                'summernote-bs5.css'
+            ],
+            'js' => [
+                'summernote-bs5.js'
+            ], 
+            'depends' => [
+                'yii\bootstrap\BootstrapPluginAsset',
+            ]
+        ]
+    ]
+            ],
+
         'session' => [
             // this is the name of the session cookie used for login on the backend
             'name' => 'advanced-backend',

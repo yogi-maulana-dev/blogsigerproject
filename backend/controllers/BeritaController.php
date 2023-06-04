@@ -133,4 +133,20 @@ class BeritaController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    public function actionUpload()
+    {
+        $uploadPath = Yii::getAlias('@webroot/uploads/');
+    
+        $uploadedFile = \yii\web\UploadedFile::getInstanceByName('upload');
+    
+        $fileName = time() . '.' . $uploadedFile->getExtension();
+        $uploadedFile->saveAs($uploadPath . $fileName);
+    
+        $url = Yii::getAlias('@web/uploads/') . $fileName;
+    
+        // Kirim respons dengan URL gambar yang diunggah
+        echo \yii\helpers\Json::encode(['uploaded' => true, 'url' => $url]);
+        Yii::$app->end();
+    }
 }

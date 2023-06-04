@@ -17,7 +17,13 @@
         "php": ">=7.4.0",
         "yiisoft/yii2": "~2.0.45",
         "yiisoft/yii2-bootstrap5": "~2.0.2",
-        "yiisoft/yii2-symfonymailer": "~2.0.3"
+        "yiisoft/yii2-symfonymailer": "~2.0.3",
+        "2amigos/yii2-ckeditor-widget": "~1.0",
+        "yiisoft/yii2-imagine": "^2.3",
+        "bower-asset/ckeditor": "^4.17.1",
+        "2amigos/yii2-tinymce-widget": "~1.1",
+        "bower-asset/tinymce": "^4.9.7",
+        "marqu3s/yii2-summernote": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
