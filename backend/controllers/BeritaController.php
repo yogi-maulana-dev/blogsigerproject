@@ -7,6 +7,10 @@ use backend\models\BeritaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
+use yii\widgets\ListView;
+
+use yii\data\Pagination;
 
 /**
  * BeritaController implements the CRUD actions for Berita model.
@@ -38,15 +42,49 @@ class BeritaController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new BeritaSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
+        // $searchModel = new BeritaSearch();
+        // $dataProvider = $searchModel->search($this->request->queryParams);
+        // $data = $searchModel::find()->all();
+
+        // return $this->render('index', [
+        //     'searchModel' => $searchModel,
+        //     'dataProvider' => $dataProvider,
+        // ]);
+
+  
+
+    //     $data = Berita::find()->all(); 
+    //    return $this->render('index', [
+    //         'data' => $data,
+    //     ]);
+
+        // $dataProvider = new ActiveDataProvider([
+        //     'query' => Berita::find(),
+        //     'pagination' => [
+        //         'pageSize' => 20,
+        //     ],
+        // ]);
+      
+        //   return $this->render('index', [
+        //     'data' => Berita::find()->all(),
+        // ]);
+
+        $query = Berita::find();
+
+        // $pagination = new Pagination([
+        //     'defaultPageSize' => 5,
+        //     'totalCount' => $query->count(),
+        // ]);
+
+        $data = $query
+            ->all();
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'data' => $data,
+            // 'pagination' => $pagination,
         ]);
 
-      
+       
     }
 
     /**

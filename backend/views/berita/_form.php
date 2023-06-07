@@ -52,37 +52,28 @@ use yii\web\View;
 								</div>
 								<div class="card-body">
 									<div class="row">
-										<div class="col-md-12 col-lg-4">
+										<div class="col-md-12 col-lg-6">
 											<div class="form-group">
                                             <?php $form = ActiveForm::begin(); ?>
 
 <?= $form->field($model, 'judul')->textInput(['maxlength' => true]) ?>
 
 <?= $form->field($model, 'isi')
-         ->widget(CKEditor::className(), 
-            [
-              'options' => [], 
-              'preset' => 'custom',
-              'clientOptions' => [
-                  'extraPlugins' => '',
-                  'height' => 500,
+        ->widget(TinyMce::class, [
+			'options' => ['rows' => 12],
+			'language' => 'en',
+			'clientOptions' => [
+				'plugins' => [
+					'advlist autolink lists link image charmap print preview anchor',
+					'searchreplace visualblocks code fullscreen',
+					'insertdatetime media table contextmenu paste code',
+				],
+				'toolbar' => 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+				'image_advtab' => true,
+			],
+		]);
 
-                  //Here you give the action who will handle the image upload 
-                  'filebrowserUploadUrl' => '/site/actionCkeditor_image_upload',
-
-                  'toolbarGroups' => [
-                      ['name' => 'undo'],
-                      ['name' => 'basicstyles', 'groups' => ['basicstyles', 'cleanup']],
-                      ['name' => 'paragraph', 'groups' => ['list', 'indent', 'blocks', 'align', 'bidi' ]],
-                      ['name' => 'styles'],
-                      ['name' => 'links', 'groups' => ['links', 'insert']]
-                  ]
-
-              ]
-
-            ]) 
-
-?>
+?>fdsf
 
 <?= $form->field($model, 'status')->textInput() ?>
 

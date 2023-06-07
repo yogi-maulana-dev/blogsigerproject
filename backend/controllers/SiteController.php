@@ -136,6 +136,17 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
+    public function actionUpload()
+{
+    $file = UploadedFile::getInstanceByName('file');
+    $fileName = 'uploads/' . Yii::$app->security->generateRandomString() . '.' . $file->extension;
+    $file->saveAs($fileName);
+    echo Json::encode([
+        'location' => Yii::$app->request->baseUrl . '/' . $fileName,
+    ]);
+    Yii::$app->end();
+}
+
     public function actionCkeditor_image_upload()
     {       
         $funcNum = $_REQUEST['CKEditorFuncNum'];
