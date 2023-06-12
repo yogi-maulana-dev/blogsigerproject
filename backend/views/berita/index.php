@@ -112,17 +112,17 @@ $this->params['breadcrumbs'][] = $this->title;
 										<table id="add-row" class="display table table-striped table-hover" >
 											<thead>
 												<tr>
-													<th>Name</th>
-													<th>Position</th>
-													<th>Office</th>
+													<th>Judul</th>
+													<th>Gambar</th>
+													<th>Tanggal Dibuat</th>
 													<th style="width: 10%">Action</th>
 												</tr>
 											</thead>
 											<tfoot>
 												<tr>
-													<th>Name</th>
-													<th>Position</th>
-													<th>Office</th>
+												<th>Judul</th>
+													<th>Gambar</th>
+													<th>Tanggal Dibuat</th>
 													<th>Action</th>
 												</tr>
 											</tfoot>

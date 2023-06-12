@@ -27,6 +27,14 @@ return [
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_adminIdentity', 'httpOnly' => true],
         ],
+
+        // 'assetManager' => [
+        //     'bundles' => [
+        //         'kartik\form\ActiveFormAsset' => [
+        //             'bsDependencyEnabled' => false // do not load bootstrap assets for a specific asset bundle
+        //         ],
+        //     ],
+        // ],
         
 // Other components
 // 'assetManager' => [
@@ -47,6 +55,11 @@ return [
 
 'assetManager' => [
     'bundles' => [
+
+        'kartik\form\ActiveFormAsset' => [
+                        'bsDependencyEnabled' => true // do not load bootstrap assets for a specific asset bundle
+                    ],
+
         'marqu3s\summernote\SummernoteAsset'   => [
             'css' => [
                 'summernote-bs5.css'

@@ -9,6 +9,7 @@ use summernote\SummernoteWidget;
 use marqu3s\summernote\Summernote;
 use yii\web\JsExpression;
 use yii\helpers\Json;
+use kartik\select2\Select2;
 
 use yii\web\View;
 
@@ -75,7 +76,10 @@ use yii\web\View;
 
 ?>fdsf
 
-<?= $form->field($model, 'status')->textInput() ?>
+<?=
+
+$form->field($model, 'status')->dropDownList(['class'=> 'form-group form-group-default' ,'active' => 'Active', 'inactive' => 'Inactive', ], ['prompt' => 'Status']) ?>
+ 
 
 <?= $form->field($model, 'created_at')->textInput() ?>
 
