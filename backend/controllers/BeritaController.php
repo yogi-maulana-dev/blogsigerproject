@@ -33,6 +33,8 @@ class BeritaController extends Controller
                 ],
             ]
         );
+
+        
     }
 
     /**

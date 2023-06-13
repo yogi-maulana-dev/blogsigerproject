@@ -59,6 +59,7 @@ use yii\web\View;
 
 <?= $form->field($model, 'judul')->textInput(['maxlength' => true]) ?>
 
+<div class="form-group form-group-default">
 <?= $form->field($model, 'isi')
         ->widget(TinyMce::class, [
 			'options' => ['rows' => 12],
@@ -74,12 +75,14 @@ use yii\web\View;
 			],
 		]);
 
-?>fdsf
-
+?>
+</div>
+	<div class="form-group form-group-default">
+												
 <?=
 
-$form->field($model, 'status')->dropDownList(['class'=> 'form-group form-group-default' ,'active' => 'Active', 'inactive' => 'Inactive', ], ['prompt' => 'Status']) ?>
- 
+$form->field($model, 'status')->dropDownList([ '1' => 'Active', '0' => 'Inactive', ], ['prompt' => 'Status']) ?>
+ </div>
 
 <?= $form->field($model, 'created_at')->textInput() ?>
 

@@ -1,6 +1,10 @@
 <?php
 
 namespace backend\models;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
+use yii\db\ActiveRecord;
 
 use Yii;
 
@@ -30,8 +34,8 @@ class Berita extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['judul', 'isi', 'created_at', 'updated_at'], 'required'],
-            [['status', 'created_at', 'updated_at'], 'integer'],
+            [['judul', 'isi'], 'required'],
+            [['status'], 'integer'],
             [['judul'], 'string', 'max' => 255],
             [['isi'], 'string'],
         ];
@@ -49,6 +53,18 @@ class Berita extends \yii\db\ActiveRecord
             'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new Expression('NOW()'),
+            ],
         ];
     }
 }
