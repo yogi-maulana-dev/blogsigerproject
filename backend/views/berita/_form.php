@@ -21,46 +21,49 @@ use yii\web\View;
 
 
 <div class="main-panel">
-			<div class="container">
-				<div class="page-inner">
-					<div class="page-header">
-						<h4 class="page-title"><?= Html::encode($this->title) ?></h4>
-						<ul class="breadcrumbs">
-							<li class="nav-home">
-								<a href="#">
-									<i class="flaticon-home"></i>
-								</a>
-							</li>
-							<li class="separator">
-								<i class="flaticon-right-arrow"></i>
-							</li>
-							<li class="nav-item">
-								<a href="#">Forms</a>
-							</li>
-							<li class="separator">
-								<i class="flaticon-right-arrow"></i>
-							</li>
-							<!-- <li class="nav-item">
+    <div class="container">
+        <div class="page-inner">
+            <div class="page-header">
+                <h4 class="page-title"><?= Html::encode($this->title) ?></h4>
+                <ul class="breadcrumbs">
+                    <li class="nav-home">
+                        <a href="#">
+                            <i class="flaticon-home"></i>
+                        </a>
+                    </li>
+                    <li class="separator">
+                        <i class="flaticon-right-arrow"></i>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Forms</a>
+                    </li>
+                    <li class="separator">
+                        <i class="flaticon-right-arrow"></i>
+                    </li>
+                    <!-- <li class="nav-item">
 								<a href="#">Basic Form</a>
 							</li> -->
-						</ul>
-					</div>
-<div class="row">
-						<div class="col-md-12">
-							<div class="card">
-								<div class="card-header">
-									<div class="card-title">Form Elements</div>
-								</div>
-								<div class="card-body">
-									<div class="row">
-										<div class="col-md-12 col-lg-6">
-											<div class="form-group">
-                                            <?php $form = ActiveForm::begin(); ?>
-
-<?= $form->field($model, 'judul')->textInput(['maxlength' => true]) ?>
-
-<div class="form-group form-group-default">
-<?= $form->field($model, 'isi')
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Form Elements</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-6">
+                                    <div class="form-group">
+                                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']])?>
+                                        <div class="form-group form-group-default">
+                                            <?= $form->field($model, 'judul')->textInput(['maxlength' => true]) ?>
+                                        </div>
+                                        <div class="form-group form-group-default">
+                                            <?= $form->field($model, 'gambar')->fileInput() ?>
+                                        </div>
+                                        <div class="form-group form-group-default">
+                                            <?= $form->field($model, 'isi')
         ->widget(TinyMce::class, [
 			'options' => ['rows' => 12],
 			'language' => 'en',
@@ -76,38 +79,29 @@ use yii\web\View;
 		]);
 
 ?>
-</div>
-	<div class="form-group form-group-default">
-												
-<?=
+                                        </div>
+                                        <div class="form-group form-group-default">
+                                            <?=
+					$form->field($model, 'status')->dropDownList([ '1' => 'Active', '0' => 'Inactive', ], ['prompt' => 'Status']) ?>
+                                      </div>
+                                        <?= $form->field($model, 'created_at')->textInput() ?>
+                                        <?= $form->field($model, 'updated_at')->textInput() ?>
+                                    </div>
+                                </div>
+                                <div class="card-action">
+                                    <div class="form-group">
+                                        <?= Html::submitButton('Save', ['button','class' => 'btn btn-success']) ?>
+                                    </div>
 
-$form->field($model, 'status')->dropDownList([ '1' => 'Active', '0' => 'Inactive', ], ['prompt' => 'Status']) ?>
- </div>
-
-<?= $form->field($model, 'created_at')->textInput() ?>
-
-<?= $form->field($model, 'updated_at')->textInput() ?>
-
-
-											</div>
-											
-										</div>
-
-
-                                        <div class="card-action">
-                                        <div class="form-group">
-    <?= Html::submitButton('Save', ['button','class' => 'btn btn-success']) ?>
-</div>
-
-<?php ActiveForm::end(); ?>
-									<!-- <button class="btn btn-success">Submit</button> -->
-									<button class="btn btn-danger">Cancel</button>
-								</div>
-							</div>
-						</div>
-					</div>
+                                    <?php ActiveForm::end(); ?>
+                                    <!-- <button class="btn btn-success">Submit</button> -->
+                                    <button class="btn btn-danger">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!--- box -->
-                    		</div>
-							</div>
-						</div>
-					</div>
+                </div>
+            </div>
+        </div>
+    </div>

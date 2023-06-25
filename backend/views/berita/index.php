@@ -130,8 +130,11 @@ $this->params['breadcrumbs'][] = $this->title;
 											<?php foreach ($data as $item): ?>
 												<tr>
 													<td> <?= $item->judul ?></td>
-													<td>System Architect</td>
-													<td>Edinburgh</td>
+													<td>                
+														 <img width='104px' src='img/<?= $item->gambar ?>'>
+													
+</td>
+													<td><?= $item->created_at ?></td>
 													<td>
 													<?= Html::a('Edit', ['update', 'id' => $item->id], ['class' => 'btn btn-primary']) ?>
 														<div class="form-button-action">

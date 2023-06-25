@@ -9,14 +9,20 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
 use yii\widgets\ListView;
-
+use yii\web\UploadedFile;
 use yii\data\Pagination;
+use Yii;
+use yii\base\Security;
+use yii\helpers\Html;
+
+
 
 /**
  * BeritaController implements the CRUD actions for Berita model.
  */
 class BeritaController extends Controller
 {
+    public $gambar;
     /**
      * @inheritDoc
      */
@@ -110,18 +116,56 @@ class BeritaController extends Controller
     public function actionCreate()
     {
         $model = new Berita();
+        // if (Yii::$app->request->isPost) {
+        //     // ambil foto
+        //     $model->gambar = UploadedFile::getInstance($model, 'gambar');
+             
+        //     if ($model->validate()) {
+        //         // upload gambar
+        //         $model->gambar->saveAs('uploads/' . $model->gambar->baseName . '.' . $model->gambar->extension);
+                 
+        //         return 'berhasil mengupload ' . $model->gambar->name;
+        //     }else {
+        //         return 'gagal mengupload ' . $model->gambar->name;
+        //     }
+                       
+    // }
+    
+        // if ($this->request->isPost) {
+        //    if ($model->load(Yii::$app->request->post())){
+            
+        //    $gambar = UploadedFile::getInstance($model,'gambar');
+        //    $model->gambar = $gambar->judul;
+        //    $model->save();
+        //    $image->saveAs(Yii::$app->basePath. '/web/upload/'. $image->judul);
+        //         return $this->redirect(['view', 'id' => $model->id]);
+        //     // }
+        // }
+        // else {
+        //     $model->loadDefaultValues();
+        // }
+     
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            
+            $gambar = UploadedFile::getInstance($model, 'gambar');
+
+            if($model->validate()){
+                $model->save();
+                if (!empty($gambar)) {
+                    $gambar->saveAs(Yii::getAlias('@backend/web/img/') . 'gambar.' . $gambar->extension);
+                    $model->gambar = 'gambar.' . $gambar->extension;
+                    $model->save(FALSE);
+                }
             }
-        } else {
-            $model->loadDefaultValues();
-        }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+            $model->save();
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
     }
 
     /**
@@ -135,13 +179,34 @@ class BeritaController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
+        if ($model->load(Yii::$app->request->post())) {
+            // Simpan data entitas
+            if ($model->save()) {
+                // Periksa apakah ada gambar yang diunggah
+                $model->gambar = UploadedFile::getInstance($model, 'gambar');
+             if ($model->gambar) {
+                    // Hapus gambar lama jika ada
+             
+                    unlink(Yii::app()->basePath.'@backend/web/img/'.$model->gambar);
 
+
+    
+    
+                    // Simpan gambar baru
+                    $gambarName = $model->id . '.' . $model->gambar->extension;
+                    $model->gambar->saveAs('@backend/web/img/' . $gambarName);
+                    $model->gambar = $gambarName;
+                    $model->save();
+                }
+    
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        }
+    
         return $this->render('update', [
             'model' => $model,
         ]);
+  
     }
 
     /**
@@ -189,4 +254,11 @@ class BeritaController extends Controller
         echo \yii\helpers\Json::encode(['uploaded' => true, 'url' => $url]);
         Yii::$app->end();
     }
+
+    public function actionViewGambar($nama){
+        $file = Yii::getAlias('@bacnkend/web/uploads/' . $nama);
+        return Yii::$app->response->sendFile($file, NULL, ['inline' => TRUE]);
+    }
+
+
 }

@@ -5,6 +5,7 @@ use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
 use yii\db\ActiveRecord;
+use yii\web\Controller;
 
 use Yii;
 
@@ -35,6 +36,9 @@ class Berita extends \yii\db\ActiveRecord
     {
         return [
             [['judul', 'isi'], 'required'],
+            // [['name', 'judul'], 'string', 'max' => 255],
+            // [['gambar'], 'file' , 'extensions' => 'jpg,png,jpeg'],
+            [['gambar'],'file','skipOnEmpty'=>TRUE,'extensions'=>'jpg, png'],
             [['status'], 'integer'],
             [['judul'], 'string', 'max' => 255],
             [['isi'], 'string'],
