@@ -153,8 +153,9 @@ class BeritaController extends Controller
             if($model->validate()){
                 $model->save();
                 if (!empty($gambar)) {
-                    $gambar->saveAs(Yii::getAlias('@backend/web/img/') . 'gambar.' . $gambar->extension);
-                    $model->gambar = 'gambar.' . $gambar->extension;
+                    $imageName = Yii::$app->security->generateRandomString() . '.' . $gambar->getExtension();
+                 $model->gambar = $imageName;
+                 $gambar->saveAs(Yii::getAlias('@webroot/img/') . $imageName);
                     $model->save(FALSE);
                 }
             }
@@ -178,27 +179,27 @@ class BeritaController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $image = UploadedFile::getInstance($model, 'gambar');
+        $ifgambar = $model->gambar;
+           echo $lama=$model->gambar;
+           if ($model->load(Yii::$app->request->post())) {
+            if ($image == null && $ifgambar == null ) {
 
-        if ($model->load(Yii::$app->request->post())) {
-            // Simpan data entitas
+                $model = $this->findModel($id);
+                unlink(Yii::getAlias('@webroot/img/').$model->gambar);
+                $model->gambar = NULL; 
+            }
+            elseif($ifgambar == null ){
+                    $model = $this->findModel($id);
+                    $imageName = Yii::$app->security->generateRandomString() . '.' . $image->getExtension();
+                    $image->saveAs(Yii::getAlias('@webroot/img/') . $imageName);
+                    $model->gambar = $imageName; 
+              
+        }else {
+            echo"kosong";
+        }
+       
             if ($model->save()) {
-                // Periksa apakah ada gambar yang diunggah
-                $model->gambar = UploadedFile::getInstance($model, 'gambar');
-             if ($model->gambar) {
-                    // Hapus gambar lama jika ada
-             
-                    unlink(Yii::app()->basePath.'@backend/web/img/'.$model->gambar);
-
-
-    
-    
-                    // Simpan gambar baru
-                    $gambarName = $model->id . '.' . $model->gambar->extension;
-                    $model->gambar->saveAs('@backend/web/img/' . $gambarName);
-                    $model->gambar = $gambarName;
-                    $model->save();
-                }
-    
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
