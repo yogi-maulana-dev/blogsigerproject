@@ -184,19 +184,25 @@ class BeritaController extends Controller
            echo $lama=$model->gambar;
            if ($model->load(Yii::$app->request->post())) {
             if ($image == null && $ifgambar == null ) {
-
-                $model = $this->findModel($id);
-                unlink(Yii::getAlias('@webroot/img/').$model->gambar);
-                $model->gambar = NULL; 
+                $model->gambar = NULL;
+                // $model = $this->findModel($id);
+                // $imageName = Yii::$app->security->generateRandomString() . '.' . $image->getExtension();
+                // $image->saveAs(Yii::getAlias('@webroot/img/') . $imageName);
+                // $model->gambar = $imageName; 
+                 
             }
             elseif($ifgambar == null ){
-                    $model = $this->findModel($id);
-                    $imageName = Yii::$app->security->generateRandomString() . '.' . $image->getExtension();
-                    $image->saveAs(Yii::getAlias('@webroot/img/') . $imageName);
-                    $model->gambar = $imageName; 
+                $model = $this->findModel($id);
+                $image = UploadedFile::getInstance($model, 'gambar');
+                $imageName = Yii::$app->security->generateRandomString() . '.' . $image->getExtension();
+                $model->gambar = $imageName;
+                $image->saveAs(Yii::getAlias('@webroot/img/') . $imageName);
+                   $model->save(FALSE);
               
         }else {
-            echo"kosong";
+            $model = $this->findModel($id);
+            unlink(Yii::getAlias('@webroot/img/').$model->gambar);
+            $model->gambar = NULL;
         }
        
             if ($model->save()) {
@@ -219,7 +225,15 @@ class BeritaController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $ifgambar = $model->gambar;
+        if ($ifgambar == null ) {
+            $this->findModel($id)->delete();
+        }else{
+            $model = $this->findModel($id);
+            unlink(Yii::getAlias('@webroot/img/').$model->gambar);
+            $this->findModel($id)->delete();
+            }
 
         return $this->redirect(['index']);
     }

@@ -36,6 +36,14 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+
+        'urlManagerBackend' => [
+            'class' => 'yii\web\urlManager',
+            'baseUrl' => 'backend/web/img/',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+        ],
+
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -44,6 +52,19 @@ return [
             ],
         ],
         */
-    ],
+
+        // 'urlManager' => [
+        //     'enablePrettyUrl' => true,
+        //     'showScriptName' => false,
+        //     'rules' => [
+        //         'berita&id=<id:\d+>' => 'r=berita',
+        //         // aturan lainnya...
+        //     ],
+        // ],
+
+   
+            ],
+   
+
     'params' => $params,
 ];

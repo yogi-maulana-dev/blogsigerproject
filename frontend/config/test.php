@@ -4,6 +4,7 @@ return [
     'components' => [
         'assetManager' => [
             'basePath' => __DIR__ . '/../web/assets',
+            'linkAssets' => true,
         ],
         'urlManager' => [
             'showScriptName' => true,

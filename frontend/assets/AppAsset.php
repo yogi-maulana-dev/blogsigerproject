@@ -9,6 +9,7 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
+    public $sourcePath = '@backend/web/img';
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [

@@ -75,30 +75,6 @@ $this->params['breadcrumbs'][] = $this->title;
 												</div>
 												<div class="modal-body">
 													<p class="small">Create a new row using this form, make sure you fill them all</p>
-													<!-- <form>
-														<div class="row">
-															<div class="col-sm-12">
-																<div class="form-group form-group-default">
-																	<label>Name</label>
-																	<input id="addName" type="text" class="form-control" placeholder="fill name">
-																</div>
-															</div>
-															<div class="col-md-6 pr-0">
-																<div class="form-group form-group-default">
-																	<label>Position</label>
-																	<input id="addPosition" type="text" class="form-control" placeholder="fill position">
-																</div>
-															</div>
-															<div class="col-md-6">
-																<div class="form-group form-group-default">
-																	<label>Office</label>
-																	<input id="addOffice" type="text" class="form-control" placeholder="fill office">
-																</div>
-															</div>
-														</div>
-													</form> -->
-                                               
-                                                    
 												</div>
 												<div class="modal-footer border-0">
 													<button type="button" id="addRowButton" class="btn btn-primary">Add</button>
@@ -135,15 +111,23 @@ $this->params['breadcrumbs'][] = $this->title;
 													
 </td>
 													<td><?= $item->created_at ?></td>
-													<td>
-													<?= Html::a('Edit', ['update', 'id' => $item->id], ['class' => 'btn btn-primary']) ?>
-														<div class="form-button-action">
-															<button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+													<td>	<div class="form-button-action">
+													<div class="form-button-action">
+													<?= Html::a('<i class="fa fa-edit"></i>', ['update', 'id' => $item->id], ['class' => 'btn btn-link btn-primary btn-lg']) ?>
+															<!-- <button type="button" data-toggle="tooltip" title="" class="" data-original-title="Edit Task">
 																<i class="fa fa-edit"></i>
-															</button>
-															<button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+															</button> -->
+															<!-- <?= Html::a('<i class="fa fa-times"></i>', ['delete', 'id' => $item->id], ['class' => 'btn btn-link btn-danger']) ?> -->
+															<?= Html::a('<i class="fa fa-times"></i>', ['delete', 'id' => $item->id], [
+    'class' => 'btn btn-link btn-danger',
+    'data' => [
+        'confirm' => 'Apakah Anda yakin ingin menghapus data ini?',
+        'method' => 'post',
+    ],
+]); ?>
+															<!-- <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
 																<i class="fa fa-times"></i>
-															</button>
+															</button> -->
 														</div>
 													</td>
 												</tr>

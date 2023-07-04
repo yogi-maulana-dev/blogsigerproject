@@ -16,19 +16,6 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 
-use frontend\models\Berita;
-use frontend\models\BeritaSearch;
-use yii\web\NotFoundHttpException;
-
-
-use yii\data\ActiveDataProvider;
-use yii\widgets\ListView;
-use yii\web\UploadedFile;
-use yii\data\Pagination;
-
-use yii\base\Security;
-use yii\helpers\Html;
-
 /**
  * Site controller
  */
@@ -88,16 +75,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        {
-            $query = Berita::find();
-            $datax = $query
-                ->all();
-    
-            return $this->render('index', [
-                'datax' => $datax,
-                // 'pagination' => $pagination,
-            ]);
-        }
+        return $this->render('index');
     }
 
     /**
