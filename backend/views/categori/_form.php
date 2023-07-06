@@ -2,22 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\helpers\Url;
-use dosamigos\ckeditor\CKEditor;
-use dosamigos\tinymce\TinyMce;
-use summernote\SummernoteWidget;
-use marqu3s\summernote\Summernote;
-use yii\web\JsExpression;
-use yii\helpers\Json;
-use kartik\select2\Select2;
-use yii\helpers\ArrayHelper;
-use app\models\Categori;
-
-
-use yii\web\View;
 
 /** @var yii\web\View $this */
-/** @var app\models\Berita $model */
+/** @var app\models\Categori $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
@@ -62,36 +49,7 @@ use yii\web\View;
                                         <div class="form-group form-group-default">
                                             <?= $form->field($model, 'judul')->textInput(['maxlength' => true]) ?>
                                         </div>
-                                        <div class="form-group form-group-default">
-                                            <?= $form->field($model, 'gambar')->fileInput() ?>
-                                        </div>
-                                        <div class="form-group form-group-default">
-                                            <?= $form->field($model, 'isi')
-        ->widget(TinyMce::class, [
-			'options' => ['rows' => 12],
-			'language' => 'en',
-			'clientOptions' => [
-				'plugins' => [
-					'advlist autolink lists link image charmap print preview anchor',
-					'searchreplace visualblocks code fullscreen',
-					'insertdatetime media table contextmenu paste code',
-				],
-				'toolbar' => 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-				'image_advtab' => true,
-			],
-		]);
-
-?>
-                                        </div>
-                                        
-                                        <?= $form->field($model, 'category_id')->dropDownList(
-    ArrayHelper::map(Category::find()->all(), 'id', 'name'),
-    ['prompt' => 'Pilih Kategori']
-) ?>
-<?= $form->field($model, 'category_id')->dropDownList(
-    ArrayHelper::map(Category::find()->all(), 'id', 'name'),
-    ['prompt' => 'Pilih Kategori']
-) ?>
+                                      
                                         <div class="form-group form-group-default">
                                             <?=
 					$form->field($model, 'status')->dropDownList([ '1' => 'Active', '0' => 'Inactive', ], ['prompt' => 'Status']) ?>
@@ -99,14 +57,14 @@ use yii\web\View;
                                 
                                     </div>
                                 </div>
+
                                 <div class="card-action">
-                                    <div class="form-group">
                                         <?= Html::submitButton('Save', ['button','class' => 'btn btn-success']) ?>
-                                    </div>
+                                   
 
                                     <?php ActiveForm::end(); ?>
                                     <!-- <button class="btn btn-success">Submit</button> -->
-                                    <button class="btn btn-danger">Cancel</button>
+                                    <a href="index.php?r=categori"><button class="btn btn-primary">Kembali</button></a>
                                 </div>
                             </div>
                         </div>

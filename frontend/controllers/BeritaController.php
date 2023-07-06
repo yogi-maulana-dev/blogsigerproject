@@ -35,6 +35,7 @@ class BeritaController extends \yii\web\Controller
         
         return $this->render('index', [
             'berita' => $berita,
+              
         ]);
     }
 

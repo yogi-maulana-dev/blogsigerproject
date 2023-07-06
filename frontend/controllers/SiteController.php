@@ -89,13 +89,39 @@ class SiteController extends Controller
     public function actionIndex()
     {
         {
-            $query = Berita::find();
-            $datax = $query
-                ->all();
+            // $query = Berita::find();
+            // $datax = $query
+            //     ->all();
     
+            // return $this->render('index', [
+            //     'datax' => $datax,
+            //     'pagination' => [
+            //         'pageSize' => 5, // Jumlah item per halaman
+            //     ], 
+            // ]);
+
+            $query = Berita::find();
+            $totalCount = $query->count();
+        
+            $pageSize = 5; // Jumlah item per halaman
+            $currentPage = Yii::$app->request->get('page', 1);
+        
+            $pagination = new Pagination([
+                'totalCount' => $totalCount,
+                'pageSize' => $pageSize,
+                'defaultPageSize' => $pageSize,
+                'forcePageParam' => false, // Untuk menghindari parameter "page" yang ditambahkan secara otomatis pada URL
+            ]);
+        
+            $data = $query
+                ->offset($pagination->offset)
+                ->limit($pagination->limit)
+                ->all();
+        
             return $this->render('index', [
-                'datax' => $datax,
-                // 'pagination' => $pagination,
+                'data' => $data,
+                'pagination' => $pagination,
+                'currentPage' => $currentPage,
             ]);
         }
     }

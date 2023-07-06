@@ -57,7 +57,7 @@ return [
         //     'enablePrettyUrl' => true,
         //     'showScriptName' => false,
         //     'rules' => [
-        //         'berita&id=<id:\d+>' => 'r=berita',
+        //         'berita&id=<id:\d+>' => 'berita',
         //         // aturan lainnya...
         //     ],
         // ],

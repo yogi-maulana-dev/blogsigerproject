@@ -8,6 +8,7 @@ use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\widgets\ActiveForm;
+use yii\widgets\LinkPager;
 $this->title = 'Project Yai';
 
 ?>
@@ -15,11 +16,7 @@ $this->title = 'Project Yai';
         <!--container-->
         <div class="container inner">
           <!--row-->
-          <!-- <?php 
-          $this->beginContent('@frontend/views/layouts/slider.php');
-
-          $this->endContent();
-          ?> -->
+       
         </div><!--/container-->
       </div>
       <!--mainfeatured end-->
@@ -34,7 +31,7 @@ $this->title = 'Project Yai';
                 <div id="post-80 align"
                   class="align_cls post-80 post type-post status-publish format-standard has-post-thumbnail hentry category-lifestyle category-travel">
 
-<?php foreach ($datax as $item):  ?>
+<?php foreach ($data as $item):  ?>
     <div class="col-md-12 fadeInDown wow" data-wow-delay="0.1s">
         <!-- bs-posts-sec-inner -->
                         <div class="bs-blog-post bshre">
@@ -58,7 +55,9 @@ $this->title = 'Project Yai';
 
         <span class="comments-link"> <a href="https://projectyai.com/projectyai/standard/where-to-chill-with-an-integrated-trainer-on-running/">0 Comments</a> </span>
             </div>                         <p><?= $item->isi?></p>
-                                <a href="https://projectyai.com/projectyai/standard/where-to-chill-with-an-integrated-trainer-on-running/" class="more-link">Read More</a>
+                                <!-- <a href="" class="more-link">Read More</a> -->
+                     
+                                <a href="index.php?r=berita&id=<?=Html::encode($item->id) ?>" class="more-link">Read More</a>
                                             </article>
                 <!-- // bs-posts-sec-inner -->
 
@@ -157,3 +156,52 @@ $this->title = 'Project Yai';
   </div>
 </div>
 </aside>
+
+<div class="col-md-12 text-center d-md-flex justify-content-between flex-row">
+
+                      <h2 class="screen-reader-text">Posts navigation</h2>
+                      <?= LinkPager::widget([
+    'pagination' => $pagination ,
+    'options' => ['class' => 'navigation pagination'], // Menambahkan kelas CSS ke elemen wrapper pagination
+    'prevPageLabel' => 'Previous', // Label tautan halaman sebelumnya
+    'nextPageLabel' => 'Next', // Label tautan halaman berikutnya
+    'prevPageCssClass' => 'prev', // Kelas CSS untuk tautan halaman sebelumnya
+    'nextPageCssClass' => 'next', // Kelas CSS untuk tautan halaman berikutnya
+    'activePageCssClass' => 'active', // Kelas CSS untuk tautan halaman saat ini
+    'disabledPageCssClass' => 'disabled', // Kelas CSS untuk tautan halaman nonaktif
+    'maxButtonCount' => 5, // Jumlah tautan halaman yang ditampilkan
+]) ?>
+</div>
+
+<!-- <div class="pagination">
+    <?php if ($currentPage > 1): ?>
+        <a href="<?= Yii::$app->urlManager->createUrl(['your-controller/action', 'page' => $currentPage - 1]) ?>">Previous</a>
+    <?php endif; ?>
+
+    <?php for ($i = 1; $i <= $pagination->getPageCount(); $i++): ?>
+        <?php if ($i == $currentPage): ?>
+            <span class="current-page"><?= $i ?></span>
+        <?php else: ?>
+            <a href="<?= Yii::$app->urlManager->createUrl(['your-controller/action', 'page' => $i]) ?>"><?= $i ?></a>
+        <?php endif; ?>
+    <?php endfor; ?>
+
+    <?php if ($currentPage < $pagination->getPageCount()): ?>
+        <a href="<?= Yii::$app->urlManager->createUrl(['your-controller/action', 'page' => $currentPage + 1]) ?>">Next</a>
+    <?php endif; ?>
+</div> -->
+
+<!-- <div class="col-md-12 text-center d-md-flex justify-content-between flex-row">
+
+                    <nav class="navigation pagination" aria-label="Posts">
+                      <h2 class="screen-reader-text">Posts navigation</h2>
+                      <div class="nav-links"><span aria-current="page" class="page-numbers current">1</span>
+                        <a class="page-numbers" href="https://demos.projectyai.com/ProjectYai/standard/page/2/">2</a>
+                        <a class="next page-numbers" href="https://demos.projectyai.com/ProjectYai/standard/page/2/"><i
+                            class="fa fa-angle-right"></i></a>
+                      </div>
+                    </nav>
+                    <div class="navigation">
+                      <p><a href="https://demos.projectyai.com/ProjectYai/standard/page/2/">Next Page &raquo;</a></p>
+                    </div>
+                  </div> -->
