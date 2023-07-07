@@ -83,13 +83,13 @@ use yii\web\View;
 
 ?>
                                         </div>
-                                        
-                                        <?= $form->field($model, 'category_id')->dropDownList(
-    ArrayHelper::map(Category::find()->all(), 'id', 'name'),
+
+                                        <?= $form->field($model, 'id')->dropDownList(
+    ArrayHelper::map(Categori::find()->all(), 'id', 'name'),
     ['prompt' => 'Pilih Kategori']
 ) ?>
 <?= $form->field($model, 'category_id')->dropDownList(
-    ArrayHelper::map(Category::find()->all(), 'id', 'name'),
+    ArrayHelper::map(Categori::find()->all(), 'id', 'name'),
     ['prompt' => 'Pilih Kategori']
 ) ?>
                                         <div class="form-group form-group-default">
