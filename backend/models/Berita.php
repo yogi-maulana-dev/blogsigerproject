@@ -6,6 +6,8 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
 use yii\db\ActiveRecord;
 use yii\web\Controller;
+use Ramsey\Uuid\Uuid;
+use backend\models\Categori;
 
 use Yii;
 
@@ -29,6 +31,12 @@ class Berita extends \yii\db\ActiveRecord
         return 'berita';
     }
 
+    public function generateUuid()
+    {
+        $uuid = Uuid::uuid4()->toString();
+        return $uuid;
+    }
+    
     /**
      * {@inheritdoc}
      */
@@ -39,11 +47,17 @@ class Berita extends \yii\db\ActiveRecord
             // [['name', 'judul'], 'string', 'max' => 255],
             // [['gambar'], 'file' , 'extensions' => 'jpg,png,jpeg'],
             [['gambar'],'file','skipOnEmpty'=>TRUE,'extensions'=>'jpg, png'],
+            [['categori'], 'string'],
             [['status'], 'integer'],
             [['judul'], 'string', 'max' => 255],
             [['isi'], 'string'],
         ];
     }
+
+    public function getCategori()
+{
+    return $this->hasOne(Categori::className(), ['id' => 'categori']);
+}
 
     /**
      * {@inheritdoc}

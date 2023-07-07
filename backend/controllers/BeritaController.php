@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\models\Berita;
+use backend\models\Categori;
 use backend\models\BeritaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -14,6 +15,7 @@ use yii\data\Pagination;
 use Yii;
 use yii\base\Security;
 use yii\helpers\Html;
+use Ramsey\Uuid\Uuid;
 
 
 
@@ -48,6 +50,9 @@ class BeritaController extends Controller
      *
      * @return string
      */
+
+
+
     public function actionIndex()
     {
         // $searchModel = new BeritaSearch();
@@ -77,15 +82,21 @@ class BeritaController extends Controller
         //     'data' => Berita::find()->all(),
         // ]);
 
-        $query = Berita::find();
 
         // $pagination = new Pagination([
         //     'defaultPageSize' => 5,
         //     'totalCount' => $query->count(),
         // ]);
 
-        $data = $query
-            ->all();
+        // $data = $query
+        //     ->all();
+
+        $query =  Berita::find()
+        ->select('berita.*, categori.judul AS categori')
+        ->joinWith('categori')
+        ->all();
+
+$data = $query;
 
         return $this->render('index', [
             'data' => $data,
@@ -116,6 +127,7 @@ class BeritaController extends Controller
     public function actionCreate()
     {
         $model = new Berita();
+        $model->id = Uuid::uuid7()->toString();
         // if (Yii::$app->request->isPost) {
         //     // ambil foto
         //     $model->gambar = UploadedFile::getInstance($model, 'gambar');

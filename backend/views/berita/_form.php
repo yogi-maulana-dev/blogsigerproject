@@ -11,7 +11,7 @@ use yii\web\JsExpression;
 use yii\helpers\Json;
 use kartik\select2\Select2;
 use yii\helpers\ArrayHelper;
-use app\models\Categori;
+use backend\models\Categori;
 
 
 use yii\web\View;
@@ -84,12 +84,8 @@ use yii\web\View;
 ?>
                                         </div>
 
-                                        <?= $form->field($model, 'id')->dropDownList(
-    ArrayHelper::map(Categori::find()->all(), 'id', 'name'),
-    ['prompt' => 'Pilih Kategori']
-) ?>
-<?= $form->field($model, 'category_id')->dropDownList(
-    ArrayHelper::map(Categori::find()->all(), 'id', 'name'),
+                                        <?= $form->field($model, 'categori')->dropDownList(
+    ArrayHelper::map(Categori::find()->all(), 'id', 'judul'),
     ['prompt' => 'Pilih Kategori']
 ) ?>
                                         <div class="form-group form-group-default">
@@ -100,13 +96,12 @@ use yii\web\View;
                                     </div>
                                 </div>
                                 <div class="card-action">
-                                    <div class="form-group">
                                         <?= Html::submitButton('Save', ['button','class' => 'btn btn-success']) ?>
-                                    </div>
+                                   
 
                                     <?php ActiveForm::end(); ?>
                                     <!-- <button class="btn btn-success">Submit</button> -->
-                                    <button class="btn btn-danger">Cancel</button>
+                                    <a href="index.php?r=berita"><button class="btn btn-primary">Kembali</button></a>
                                 </div>
                             </div>
                         </div>
