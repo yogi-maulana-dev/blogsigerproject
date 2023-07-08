@@ -3,19 +3,18 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%categori}}`.
+ * Handles the creation of table `{{%populer}}`.
  */
-class m230704_063845_create_categori_table extends Migration
+class m230708_085642_create_populer_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('{{%categori}}', [
+        $this->createTable('{{%populer}}', [
             'id' => $this->primaryKey(),
-            'judul' => $this->string()->notNull(),
-            'status' => $this->smallInteger()->notNull()->defaultValue(10),
+            'view' => $this->string(255)->notNull(),
             'created_at' => $this->datetime(),
             'updated_at' => $this->datetime(),
         ]);
@@ -26,6 +25,6 @@ class m230704_063845_create_categori_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%categori}}');
+        $this->dropTable('{{%populer}}');
     }
 }
